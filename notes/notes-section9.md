@@ -1,0 +1,2 @@
+-   working effects, reducers, and
+-   app-wide state, or state spread across multiple components with Context
