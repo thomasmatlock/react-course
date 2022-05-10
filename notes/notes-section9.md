@@ -25,3 +25,6 @@
     -   arg2 is the specified dependencies. the arg1 function only runs if these change
     -   arg1 is side effect function
     -   arg2 is the dependencies
+-   something about state, is that the state all is lost everytime you reload the entire page
+-   here we are using localStorage to save the state, and also on startup check if the state was persisted
+-   instead of localStorage, we import useEffect from react to control when its run, instead of every time, otherwise its a infinite loop
