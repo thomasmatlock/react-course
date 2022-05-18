@@ -28,3 +28,6 @@
 -   something about state, is that the state all is lost everytime you reload the entire page
 -   here we are using localStorage to save the state, and also on startup check if the state was persisted
 -   instead of localStorage, we import useEffect from react to control when its run, instead of every time, otherwise its a infinite loop
+    #112
+-   often times you want something to run only once when certain things are re-evaluated
+-   the dependency array are teh variables or objects being watched for change
