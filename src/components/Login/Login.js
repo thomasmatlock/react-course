@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
-
+const emailReducer = (state, action) => {
+	return {value: '', isValid: false}; 
+ }; // this function is located outside the Login function because it doesnt require any info or state from the login funciton. it doesnt need to interact with anything inside the Login component.
+// all the info this function needs will be passed into this funciton by React automatically
 const Login = (props) => {
 	const [enteredEmail, setEnteredEmail] = useState('');
 	const [emailIsValid, setEmailIsValid] = useState();
@@ -11,77 +14,88 @@ const Login = (props) => {
 	const [passwordIsValid, setPasswordIsValid] = useState();
 	const [formIsValid, setFormIsValid] = useState(false);
 
-	// when you use useEffect without any dependancies array, its the same as just having that function run outside the useEffect, like a regular function that functions every time the component is evaluated
-	// the array of dependancies you pass here tells React that after every login component execution, it will rerun the useEffect ONLY if the dependencies change. 
-	// if none of them change, it will not rerun
+	const [emailState, dispatchEmail] = useReducer(emailReducer, {value:'', isValid: false});
+
 	useEffect(() => {
-		setFormIsValid(
-			enteredEmail.includes('@') && enteredPassword.trim().length > 6 // simple validation for email
-		);
-	}, [setFormIsValid, enteredEmail, enteredPassword]);
+		// console.log('[Login] useEffect');
+	 }, []);
 
-	const emailChangeHandler = (event) => {
-		setEnteredEmail(event.target.value);
-	};
+	useEffect(() => {
+		const identifier = setTimeout(() => { 
+			// console.log('checking form validity');
+			setFormIsValid(
+				enteredEmail.includes('@') && enteredPassword.trim().length > 6 // simple validation for email
+				);
+			}, 250);
+		return () => {
+			// console.log('CLEANUP'); // this runs first and clears the timeout, so the first function is cleared
+			clearTimeout(identifier);
+		}
+    }, [setFormIsValid, enteredEmail, enteredPassword]); // dependencies are easy, just add WHAT YOU ARE USING in the side effect function, aka setFormIsValid, enteredEmail and enteredPassword. make sure functions arent with the () characters
 
-	const passwordChangeHandler = (event) => {
-		setEnteredPassword(event.target.value);
+    const emailChangeHandler = (event) => {
+        setEnteredEmail(event.target.value);
+    };
 
-		// setFormIsValid(event.target.value.trim().length > 6 && enteredEmail.includes('@'));
-	};
+    const passwordChangeHandler = (event) => {
+        setEnteredPassword(event.target.value);
 
-	const validateEmailHandler = () => {
-		setEmailIsValid(enteredEmail.includes('@'));
-	};
+        setFormIsValid(event.target.value.trim().length > 6 && emailState.value.includes('@'));
+    };
 
-	const validatePasswordHandler = () => {
-		setPasswordIsValid(enteredPassword.trim().length > 6);
-	};
+    const validateEmailHandler = () => {
+        setEmailIsValid(emailState.value.includes('@'));
+    };
 
-	const submitHandler = (event) => {
-		event.preventDefault();
-		props.onLogin(enteredEmail, enteredPassword);
-	};
+    const validatePasswordHandler = () => {
+        setPasswordIsValid(enteredPassword.trim().length > 6);
+    };
 
-	return (
-		<Card className={classes.login}>
-			<form onSubmit={submitHandler}>
-				<div
-					className={`${classes.control} ${
+    const submitHandler = (event) => {
+        event.preventDefault();
+        props.onLogin(enteredEmail, enteredPassword);
+    };
+
+    return ( <
+        Card className = { classes.login } >
+        <
+        form onSubmit = { submitHandler } >
+        <
+        div className = { `${classes.control} ${
 						emailIsValid === false ? classes.invalid : ''
-					}`}
-				>
-					<label htmlFor="email">E-Mail</label>
-					<input
-						type="email"
-						id="email"
-						value={enteredEmail}
-						onChange={emailChangeHandler}
-						onBlur={validateEmailHandler}
-					/>
-				</div>
-				<div
-					className={`${classes.control} ${
+					}` } >
+        <
+        label htmlFor = "email" > E - Mail < /label> <
+        input type = "email"
+        id = "email"
+        value = { enteredEmail }
+        onChange = { emailChangeHandler }
+        onBlur = { validateEmailHandler }
+        /> < /
+        div > <
+        div className = { `${classes.control} ${
 						passwordIsValid === false ? classes.invalid : ''
-					}`}
-				>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						id="password"
-						value={enteredPassword}
-						onChange={passwordChangeHandler}
-						onBlur={validatePasswordHandler}
-					/>
-				</div>
-				<div className={classes.actions}>
-					<Button type="submit" className={classes.btn} disabled={!formIsValid}>
-						Login
-					</Button>
-				</div>
-			</form>
-		</Card>
-	);
+					}` } >
+        <
+        label htmlFor = "password" > Password < /label> <
+        input type = "password"
+        id = "password"
+        value = { enteredPassword }
+        onChange = { passwordChangeHandler }
+        onBlur = { validatePasswordHandler }
+        /> < /
+        div > <
+        div className = { classes.actions } >
+        <
+        Button type = "submit"
+        className = { classes.btn }
+        disabled = {!formIsValid } >
+        Login <
+        /Button> < /
+        div > <
+        /form> < /
+        Card >
+    );
 };
 
 export default Login;

@@ -42,3 +42,24 @@
 - SIDE EFFECTS SHOULD NOT GO DIRECTLY INTO COMPONENTS/FUNCTIONS
 - ARG1 is a function that is ran if any of the depencencies change, which are arg2
 - useEffect seems to be great for state management
+    // when you use useEffect without any dependancies array, its the same as just having that function run outside the useEffect, like a regular function that functions every time the component is evaluated
+    // the array of dependancies you pass here tells React that after every login component execution, it will rerun the useEffect ONLY if the dependencies change.
+    // if none of them change, it will not rerun
+    // we want useEffect to run on every keystroke for email and password
+    // you need to add dependencies to watch for changes so it can run when those dependencies change
+    // useEffect is great for when data or props change
+    // useEffect is great also for changes, something being loaded, input changing etc, but its in response to another action, whatever that means
+
+# useReducer
+- useReducer is a hook that allows you to manage state in a component, but in a more powerful way than useState
+- its also a bit more complicated to setup, so dont use unless you need to
+- its great when you have multi part state, like entered value and validity of the value
+- and/or state updates that depend on other state values
+- so like checking the email validity is by checking another state, and its not a good idea to set one state based on the state of another state
+- this is not a good idea sometimes because some states arent processed in time to be used in another state
+- BETTER TO USE if you update a state based on the state of another state
+- so useReducer is a function that takes in 2 args
+    -   arg1 is the initial state
+    -   arg2 is the reducer function
+    - this is just like the other state hooks
+- the goal is for this is to combine 2 states into one state
