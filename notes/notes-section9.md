@@ -31,3 +31,14 @@
     #112
 -   often times you want something to run only once when certain things are re-evaluated
 -   the dependency array are teh variables or objects being watched for change
+-  effects and side effects are anything that is not a component that reacts to our user interactions
+- non effects are what react to our user interactions
+- components are just functions that are run, top to bottom, everything in it deals with bringing something on to screen, and reacting to user input
+- components may have handlers in their, but overall components are just functions
+- components are functions that are concerned with bringing something on to screen
+- side effects are everything else not concerned with directly bringing something on to screen, ie like an http request is a good example
+- examples are timers, http requests, storing date in local storage, etc
+- whenever an effect state changes, the entire component is ran again
+- SIDE EFFECTS SHOULD NOT GO DIRECTLY INTO COMPONENTS/FUNCTIONS
+- ARG1 is a function that is ran if any of the depencencies change, which are arg2
+- useEffect seems to be great for state management
