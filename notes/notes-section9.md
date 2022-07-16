@@ -67,4 +67,7 @@
 - useReducer when useState is getting cumbersome or buggy
 - useEffect is default and most use cases. What interesting is I wonder if useReducer is going to be good for Warp or not
 - useReducer is great for more power and guaranted latest state snapshot
-## 121
+## 123
+- in most cases, pass props, but in some cases, pass state
+- pass state if its something you would have to pass through many components
+- use props if it does something very specific

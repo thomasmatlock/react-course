@@ -8,7 +8,7 @@ import AuthContext from '../../context/auth-context';
 // need to make the provider offers a value passed through it
 // and then whenever the state changes, the value will passed down to all consuming components
 // also the key is what we're passing, and the value is what we're passing
-const Navigation = (props) => {
+const Navigation = () => {
   const ctx = useContext(AuthContext); // this is the simple way of using AuthContext
   return (
     <nav className={classes.nav}>
