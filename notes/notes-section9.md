@@ -71,3 +71,12 @@
 - in most cases, pass props, but in some cases, pass state
 - pass state if its something you would have to pass through many components
 - use props if it does something very specific
+## 127
+- hooks are anything that start with "use"
+- 2 main rules
+    - 1) you can only use hooks in react components, not in regular functions
+    - 2) only use hooks at the top of your component tree, not in nested components. you can only use hooks at the top level of components, not nested
+        - 2a) you cant use hooks in if statements
+    - 3) 3rd rule, for useEffect, always list everything you use in useEffect as a depencency array, because if any of those changes, you will need those in useEffect
+## 128
+- just breezing through this to get to the project side of things
