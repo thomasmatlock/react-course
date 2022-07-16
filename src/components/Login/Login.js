@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useReducer } from 'react';
-// import React, { useState, useReducer } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -41,12 +40,13 @@ const Login = (props) => {
 	// useEffect(() => {
 	// 	console.log('[Login] useEffect');
 	//  }, []);
-
+    const { isValid: emailIsValid} = emailState; // adding this alias basically allows the thing to not run, once its valid, even more characters, it wont run
+    const { isValid: passwordIsValid} = passwordState;
 	useEffect(() => {
 		const identifier = setTimeout(() => { 
 			// console.log('checking form validity');
 			setFormIsValid(
-				emailState.isValid && passwordState.isValid // simple validation for email
+				emailIsValid && passwordIsValid // simple validation for email
 				);
 			}, 500);
 		return () => {
@@ -54,7 +54,7 @@ const Login = (props) => {
 			clearTimeout(identifier);
 		}
     // }, [setFormIsValid, emailState, passwordState]); // dependencies are easy, just add WHAT YOU ARE USING in the side effect function, aka setFormIsValid, enteredEmail and enteredPassword. make sure functions arent with the () characters
-    }, [ emailState, passwordState]); // dependencies are easy, just add WHAT YOU ARE USING in the side effect function, aka setFormIsValid, enteredEmail and enteredPassword. make sure functions arent with the () characters
+    }, [ emailIsValid, passwordIsValid]); // dependencies are easy, just add WHAT YOU ARE USING in the side effect function, aka setFormIsValid, enteredEmail and enteredPassword. make sure functions arent with the () characters
 
     const emailChangeHandler = (event) => {
         // setEnteredEmail(event.target.value);
