@@ -4,7 +4,7 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 const emailReducer = (state, action) => {
-    console.log(action.type, action);
+    // console.log(action.type, action);
     if (action.type === 'USER_INPUT') { 
         return {value: action.val, isValid:action.val.includes('@')}; 
     }
@@ -15,7 +15,7 @@ const emailReducer = (state, action) => {
 };
 
 const passwordReducer = (state, action) => {
-    console.log(action.type, action);
+    // console.log(action.type, action);
     if (action.type === 'USER_INPUT') {
         return { value: action.val, isValid: action.val.trim().length > 6 };
      
