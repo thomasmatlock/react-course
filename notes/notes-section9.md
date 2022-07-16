@@ -67,3 +67,4 @@
 - useReducer when useState is getting cumbersome or buggy
 - useEffect is default and most use cases. What interesting is I wonder if useReducer is going to be good for Warp or not
 - useReducer is great for more power and guaranted latest state snapshot
+## 121
