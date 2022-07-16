@@ -63,3 +63,7 @@
     -   arg2 is the reducer function
     - this is just like the other state hooks
 - the goal is for this is to combine 2 states into one state
+## 120
+- useReducer when useState is getting cumbersome or buggy
+- useEffect is default and most use cases. What interesting is I wonder if useReducer is going to be good for Warp or not
+- useReducer is great for more power and guaranted latest state snapshot

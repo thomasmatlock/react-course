@@ -40,7 +40,7 @@ const Login = (props) => {
 	// useEffect(() => {
 	// 	console.log('[Login] useEffect');
 	//  }, []);
-    const { isValid: emailIsValid} = emailState; // adding this alias basically allows the thing to not run, once its valid, even more characters, it wont run
+    const { isValid: emailIsValid} = emailState; // adding this alias basically allows the thing to not run, once its valid, even more characters, it wont run. this makes it so when these depencies change, it will run again, instead of so often
     const { isValid: passwordIsValid} = passwordState;
 	useEffect(() => {
 		const identifier = setTimeout(() => { 
