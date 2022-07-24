@@ -2,20 +2,24 @@
     "name": "react-complete-guide",
     "version": "0.1.0",
     "private": true,
+    "main": "./src/js/main.js",
     "dependencies": {
         "@testing-library/jest-dom": "^5.11.6",
         "@testing-library/react": "^11.2.2",
         "@testing-library/user-event": "^12.5.0",
+        "electron": "^19.0.9",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-scripts": "4.0.1",
         "web-vitals": "^0.2.4"
     },
     "scripts": {
+        "watch": "nodemon --exec electron .",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "dev": "concurrently --kill-others \"npm run start\"  \"npm run watch\""
     },
     "eslintConfig": {
         "extends": [
@@ -34,5 +38,9 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "concurrently": "^7.3.0",
+        "nodemon": "^2.0.19"
     }
 }
